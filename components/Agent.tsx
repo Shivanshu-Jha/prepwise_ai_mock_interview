@@ -1,8 +1,11 @@
+"use client"
+
 import { cn } from '@/lib/utils';
 import Image from 'next/image'
+import { useState } from 'react';
 
 enum CallStatus {
-    INACTIVE = 'INATCIVE',
+    INACTIVE = 'INACTIVE',
     CONNECTING = 'CONNECTING',
     ACTIVE = 'ACTIVE',
     FINISHED = 'FINISHED',
@@ -12,7 +15,7 @@ enum CallStatus {
 const Agent = ({ userName }: AgentProps) => {
 
     const isSpeaking = true;
-    const callStatus = CallStatus.FINISHED;
+    const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
 
     const messages = [
         'What is your name',
@@ -53,12 +56,12 @@ const Agent = ({ userName }: AgentProps) => {
             )}
 
             <div className='w-full flex justify-center'>
-                {callStatus !== 'ACTIVE' ? (
+                {callStatus !== "ACTIVE" ? (
                     <button className='relative btn-call'>
-                        <span className={cn('absolute animate-ping rounded-full opacity-75 ', callStatus !== 'CONNECTING' & 'hidden')}
+                        <span className={cn('absolute animate-ping rounded-full opacity-75 ', callStatus !== "CONNECTING" && 'hidden')}
                         />
                         <span>
-                            {callStatus === 'INACTIVE' || callStatus === 'FINISHED' ? 'Call' : '...'}
+                            {callStatus === "INACTIVE" || callStatus === "FINISHED" ? 'Call' : '. . .'}
                         </span>
                     </button>
                 ) : (
