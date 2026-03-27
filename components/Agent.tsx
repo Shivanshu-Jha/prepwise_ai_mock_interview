@@ -182,18 +182,6 @@ const Agent = ({ userName, userId, type, interviewId, feedbackId, questions }: A
                     </button>
                 )}
             </div>
-
-            <button
-                type="button"
-                onClick={() => handleGenerateFeedback([
-                    { role: 'user', content: 'I have 3 years of React experience.' },
-                    { role: 'assistant', content: 'Can you describe a challenging project?' },
-                    { role: 'user', content: 'I built a real-time dashboard with WebSockets.' },
-                ])}
-                className="btn-call"
-            >
-                Test Feedback
-            </button>
         </>
     )
 }
