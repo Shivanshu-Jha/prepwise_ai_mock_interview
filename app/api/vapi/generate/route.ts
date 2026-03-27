@@ -1,17 +1,15 @@
 import { generateText } from 'ai'
 import { google } from '@ai-sdk/google'
-import { getRandomInterviewCover } from '@/utils';
+import { getRandomInterviewCover } from '@/lib/utils';
 import { db } from '@/firebase/admin';
 
 
-export async function GET() {
-    return Response.json({ success: true, data: 'Thank You!' }, { status: 200 })
-}
-
 export async function POST(request: Request) {
+    console.log('Post request hit at starting')
     const { type, role, level, techstack, amount, userid } = await request.json();
 
     try {
+
         const { text: questions } = await generateText({
             model: google('gemini-2.5-flash'),
             prompt: `Prepare questions for a job interview.
@@ -28,11 +26,14 @@ export async function POST(request: Request) {
             Thank you! <3`
             ,
         });
+        console.log("Raw Gemini output:", questions);
 
 
         const interview = {
-            role, type, level,
-            techstack: techstack.split(','),
+            role: role,
+            type: type,
+            level: level,
+            techstack: techstack.split(","),
             questions: JSON.parse(questions),
             userId: userid,
             finalized: true,
@@ -40,13 +41,25 @@ export async function POST(request: Request) {
             createdAt: new Date().toISOString(),
         }
 
-        await db.collection("interviews").add(interview);
 
-        return Response.json({ success: true }, { status: 200 });
+        const ref = await db.collection("interviews").add(interview);
+        // const ref = await db.collection("interviews").add({ test: true, userId: userid, createdAt: new Date().toISOString() });
+
+
+        console.log("Request body:", { type, role, level, techstack, amount, userid });
+
+
+        return Response.json({ success: true, interviewId: ref.id }, { status: 200 });
 
     } catch (error) {
         console.log(error);
 
         return Response.json({ success: false, error }, { status: 500 })
     }
+}
+
+
+export async function GET() {
+    console.log('Get request hit')
+    return Response.json({ success: true, data: 'Thank You!' }, { status: 200 })
 }

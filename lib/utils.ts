@@ -22,12 +22,13 @@ const checkIconExists = async (url: string) => {
   }
 };
 
-export const getTechLogos = async (techArray: string[]) => {
-  const logoURLs = techArray.map((tech) => {
+export const getTechLogos = async (techArray: string[] = []) => {
+  const logoURLs = (techArray ?? []).map((tech) => {
     const normalized = normalizeTechName(tech);
+
     return {
       tech,
-      url: `${techIconBaseURL}/${normalized}/${normalized}-original.svg`,
+      url: `/icons/${normalized}.svg`, // adjust path to your icons
     };
   });
 
@@ -40,6 +41,8 @@ export const getTechLogos = async (techArray: string[]) => {
 
   return results;
 };
+
+
 
 export const getRandomInterviewCover = () => {
   const randomIndex = Math.floor(Math.random() * interviewCovers.length);

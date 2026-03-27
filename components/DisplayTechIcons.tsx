@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { getTechLogos } from '@/utils'
+import { getTechLogos } from '@/lib/utils'
 import Image from 'next/image';
 
 
