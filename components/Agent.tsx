@@ -21,7 +21,7 @@ interface SavedMessage {
 }
 
 
-const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) => {
+const Agent = ({ userName, userId, type, interviewId, feedbackId, questions }: AgentProps) => {
 
 
     const router = useRouter();
@@ -73,6 +73,7 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
             interviewId: interviewId!,
             userId: userId!,
             transcript: messages,
+            feedbackId,
         })
 
         if (success && id) {
@@ -91,7 +92,7 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
                 handleGenerateFeedback(messages);
             }
         }
-    }, [messages, callStatus, type, userId ])
+    }, [messages, callStatus, feedbackId, interviewId, router, type, userId])
 
 
 
@@ -112,7 +113,7 @@ const Agent = ({ userName, userId, type, interviewId, questions }: AgentProps) =
 
             if (questions) {
                 formattedQuestions = questions
-                    .map((question) => `-${question}`)
+                    .map((question) => `- ${question}`)
                     .join('\n');
             }
 

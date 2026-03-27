@@ -72,7 +72,7 @@ export async function createFeedback(params: CreateFeedbackParams) {
     try {
         const formattedTranscript = transcript
             .map((sentence: { role: string; content: string; }) => (
-                `-${sentence.role}: ${sentence.content}\n`
+                `- ${sentence.role}: ${sentence.content}\n`
             )).join('');
 
         const { object: { totalScore, categoryScores, strengths, areasForImprovement, finalAssessment } } = await generateObject({
@@ -119,13 +119,17 @@ export async function createFeedback(params: CreateFeedbackParams) {
         }
 
     } catch (e) {
-        console.error('Error saving feedback', e)
+        console.error('Error saving feedback', JSON.stringify(e, null, 2));
+        console.error('Error Message:', e instanceof Error ? e.message : String(e))
 
         return {
             success: false
         }
     }
 }
+
+
+
 
 // function for getting feedback by interview id
 export async function getFeedbackByInterviewId(
