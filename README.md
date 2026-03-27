@@ -3,11 +3,9 @@
 An intelligent platform that helps candidates prepare for interviews by simulating real‑world interview scenarios.  
 Built with **Next.js**, **Firebase**, **Google Gemini AI**, and **Vapi**, it evaluates transcripts, generates structured feedback, and provides actionable insights.
 
-# 🌐 Live Demo
-    Check it out here: [prepwise-ai-mock-interview](https://prepwise-ai-mock-interview-one.vercel.app/)
-
-
-
+## 🌐 Live Demo
+Check it out here: [prepwise-ai-mock-interview](https://prepwise-ai-mock-interview-one.vercel.app/)
+    
 ## 🚀 Features
 
 - **AI‑Powered Interview Simulation**  
@@ -47,11 +45,17 @@ Built with **Next.js**, **Firebase**, **Google Gemini AI**, and **Vapi**, it eva
 ## 📂 Project Structure
 interview_platform/
 ├── app/                # Next.js app router pages
+
 ├── components/         # UI components
+
 ├── constants/          # Zod schemas (feedbackSchema, etc.)
+
 ├── firebase/           # Firebase admin setup
+
 ├── lib/actions/        # Server actions (createFeedback, getInterviewById, etc.)
+
 ├── types/              # TypeScript types
+
 └── README.md
 
 
@@ -89,7 +93,3 @@ interview_platform/
 4. **Run the dev server**
      ```bash
          npm run dev
-
-
-
-
