@@ -37,6 +37,7 @@ Check it out here: [prepwise-ai-mock-interview](https://prepwise-ai-mock-intervi
 - **Frontend**: Next.js (App Router, Server Actions)
 - **Backend**: Firebase Admin SDK
 - **AI**: Google Gemini via `@ai-sdk/google`
+- **Voice Agent**: Vapi
 - **Validation**: Zod schemas
 - **Database**: Firestore
 
